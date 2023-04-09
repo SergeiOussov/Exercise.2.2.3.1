@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${addnew} ? 'Новый пользователь' : 'Изменить пользователя'"/>
+</head>
+<body>
+<div align="center">
+    <a th:href="@{/}">Назад к списку пользователей</a>
+    <h2 th:text="${addnew} ? 'Новый пользователь' : 'Изменить пользователя'"/>
+    <form th:action="${addnew} ? '/new' : '/edit?id=' + ${user.id}"
+          th:object="${user}" method="POST">
+        <table border="0" cellpadding="5">
+            <tr th:if="${user.id}">
+                <td>ID</td>
+                <td>:</td>
+                <td th:utext="${user.id}">
+                    <input type="hidden" th:field="${user.id}">
+                </td>
+            </tr>
+            <tr>
+                <td>Имя</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{name}"/></td>
+            </tr>
+            <tr>
+                <td>Фамилия</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{lastName}"/></td>
+            </tr>
+            <tr>
+                <td>Возраст</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{age}"/></td>
+            </tr>
+            <tr>
+                <td>e-mail</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{email}"/></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" th:value="${addnew} ? 'Добавить' : 'Изменить'"/>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
