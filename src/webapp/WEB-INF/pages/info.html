@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${addnew} ? 'Новый пользователь' : 'Изменить пользователя'"/>
+    <title th:text="${addnew} ? 'Новый пользователь' : 'Изменить данные пользователя'"/>
 </head>
 <body>
 <div align="center">
     <a th:href="@{/}">Назад к списку пользователей</a>
-    <h2 th:text="${addnew} ? 'Новый пользователь' : 'Изменить пользователя'"/>
-    <form th:action="${addnew} ? '/new' : '/edit?id=' + ${user.id}"
-          th:object="${user}" method="POST">
+    <h2 th:text="${addnew}?'Новый пользователь':'Изменить данные пользователя'"/>
+    <form th:action="${addnew}?'/new':'/'+${user.id}"
+          th:object="${user}" th:method="${addnew}?POST:PUT">
         <table border="0" cellpadding="5">
             <tr th:if="${user.id}">
                 <td>ID</td>
@@ -39,7 +39,9 @@
                 <td><input type="text" th:field="*{email}"/></td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" th:value="${addnew} ? 'Добавить' : 'Изменить'"/>
+                <td colspan="2">
+                    <input type="submit" th:value="${addnew}?'Добавить':'Сохранить'"/>
+                </td>
             </tr>
         </table>
     </form>

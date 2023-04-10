@@ -16,17 +16,20 @@
             <th>e-mail</th>
             <th colspan="2"><em>действие</em></th>
         </tr>
-        <tr th:each="user : ${UserList}">
+        <tr th:each="user:${UserList}">
             <td th:text="${user.id}"></td>
             <td th:text="${user.name}"></td>
             <td th:text="${user.lastName}"></td>
             <td th:text="${user.age}"></td>
             <td th:text="${user.email}"></td>
             <td>
-                <a th:href="@{/edit(id=${user.id})}">изменить</a>
+                <form th:method="GET" th:action="@{/{id}(id=${user.id})}">
+                    <input type="submit" value="Изменить"/>
+                </form>
             </td>
             <td>
-                <a th:href="@{/delete(id=${user.id})}">удалить</a>
+                <form th:method="DELETE" th:action="@{/{id}(id=${user.id})}">
+                    <input type="submit" value="Удалить"/></form>
             </td>
         </tr>
     </table>

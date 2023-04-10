@@ -37,4 +37,7 @@ public class UserDaoImp implements UserDao{
         return (List<User>) em.createQuery("Select u from User u", User.class).getResultList();
     }
 
+
+
+
 }
